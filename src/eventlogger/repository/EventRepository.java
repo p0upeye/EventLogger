@@ -25,7 +25,6 @@ public record EventRepository(String filePath) {
 
     /**
      * Зберігає подію у файл.
-     *
      * @param event Подія для збереження.
      * @return true, якщо збереження пройшло успішно, інакше false.
      */
@@ -45,7 +44,6 @@ public record EventRepository(String filePath) {
 
     /**
      * Зчитує всі події з файлу.
-     *
      * @return Список подій.
      */
     public List<Event> findAll() {
@@ -75,7 +73,6 @@ public record EventRepository(String filePath) {
 
     /**
      * Знаходить події за вказаною датою.
-     *
      * @param date Дата для пошуку.
      * @return Список подій, що відбулися в цю дату.
      */
@@ -87,7 +84,6 @@ public record EventRepository(String filePath) {
 
     /**
      * Знаходить події, що відбулися сьогодні.
-     *
      * @return Список подій за сьогоднішню дату.
      */
     public List<Event> findToday() {
@@ -96,7 +92,6 @@ public record EventRepository(String filePath) {
 
     /**
      * Знаходить першу подію у файлі.
-     *
      * @return Перша подія або null, якщо файл порожній.
      */
     public Event findFirst() {
@@ -107,7 +102,6 @@ public record EventRepository(String filePath) {
 
     /**
      * Знаходить останню подію у файлі.
-     *
      * @return Остання подія або null, якщо файл порожній.
      */
     public Event findLast() {
@@ -118,7 +112,6 @@ public record EventRepository(String filePath) {
 
     /**
      * Підраховує загальну кількість подій у файлі.
-     *
      * @return Кількість подій.
      */
     public int count() {
@@ -127,7 +120,6 @@ public record EventRepository(String filePath) {
 
     /**
      * Перевіряє, чи є у файлі хоча б одна подія.
-     *
      * @return true, якщо є події, інакше false.
      */
     public boolean hasEvents() {
