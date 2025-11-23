@@ -63,6 +63,25 @@ public class EventService {
         return new EventStatistics(totalCount, todayCount, firstEvent, lastEvent);
     }
 
+    /**
+     * Видаляє подію за номером (не індексом в лісті, а саме номером події).
+     * @param eventIndex номер події.
+     * @return true, якщо успішно видалено, інакше false.
+     */
+    public boolean deleteEvent(int eventIndex) {
+        if(eventIndex < 1) return false;
+
+        return repository.deleteByIndex(eventIndex - 1);
+    }
+
+    /**
+     * Видаляє всі події
+     * @return true якщо успішно
+     */
+    public boolean deleteAllEvents() {
+        return repository.deleteAll();
+    }
+
     public boolean hasEvents() {
         return repository.hasEvents();
     }

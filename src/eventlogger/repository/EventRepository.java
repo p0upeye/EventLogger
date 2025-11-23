@@ -43,6 +43,27 @@ public record EventRepository(String filePath) {
     }
 
     /**
+     * Перезаписує файл новим списком подій.
+     * @param events Новий список подій.
+     * @return true якщо успішно.
+     */
+    public boolean rewrite(List<Event> events) {
+        try(BufferedWriter writer = new BufferedWriter(
+                new FileWriter(filePath, false)
+        )) {
+            for(Event event : events) {
+                writer.write(event.toFileString());
+                writer.newLine();
+            }
+
+            return true;
+        } catch(IOException e) {
+            System.err.println("Error rewriting file: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
      * Зчитує всі події з файлу.
      * @return Список подій.
      */
@@ -108,6 +129,29 @@ public record EventRepository(String filePath) {
         List<Event> events = findAll();
 
         return events.isEmpty() ? null : events.getLast();
+    }
+
+    /**
+     * Видаляє подію за індексом.
+     * @param index Індекс події для видалення.
+     * @return true, якщо успішно видалено, інакше false.
+     * */
+    public boolean deleteByIndex(int index) {
+        List<Event> events = findAll();
+
+        if(index < 0 || index >= events.size()) return false;
+
+        events.remove(index);
+
+        return rewrite(events);
+    }
+
+    /**
+     * Видаляє всі події.
+     * @return true якщо успішно.
+     */
+    public boolean deleteAll() {
+        return rewrite(new ArrayList<>());
     }
 
     /**
